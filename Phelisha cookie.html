@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phelisha's Cookie Shop - Homemade with Love</title>
+    <style>
+        
+        html {
+            scroll-behavior: smooth;
+    }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fce4ec; 
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #ff80ab; 
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        .hero {
+            background: url('cookie.jpg') no-repeat center center/cover; 
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: 20px;
+            position: relative;
+            transition: background-image 1s ease-in-out;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4); 
+            z-index: 1;
+        }
+
+        .hero * {
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero p {
+            font-size: 1.2em;
+        }
+        .section {
+            background-color: white;
+            padding: 40px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .section h2 {
+            color: #ff80ab;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .product-card h3 {
+            color: #ff80ab;
+            margin-top: 0;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #e91e63;
+            margin-bottom: 10px;
+        }
+
+    .product-card:hover {
+             transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        #about {
+            background: linear-gradient(135deg, #fff0f5, #ffe0e9);
+            padding: 50px 20px;
+            border-radius: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #about::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 128, 171, 0.2);
+            border-radius: 50%;
+        }
+
+        #about::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 128, 171, 0.2);
+            border-radius: 50%;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #ff80ab;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #e91e63;
+        }
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .about-content img {
+            max-width: 400px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+    }
+
+        footer {
+            background-color: #ff80ab;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 30px;
+            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            nav ul {
+                flex-direction: column;
+            }
+            nav ul li {
+                margin: 5px 0;
+            }
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        #topBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ff80ab;
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: opacity 0.3s ease;
+    }
+
+        #topBtn.show {
+            display: block;
+            opacity: 1;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Phelisha's Cookie Shop</h1>
+            <nav>
+                <ul>
+                    <li class="dropdown"><a href="#">Home</a></li>
+                    <li class="dropdown"><a href="#cookies">Our Cookies ▾</a></li>
+                    <li class="dropdown"><a href="#about">About Me  ▾</a></li>
+                    <li class="dropdown"><a href="#contact">Contact ▾</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Freshly Baked, Made with Love</h1>
+        <p>Bringing sweet joy to your day, one delicious cookie at a time!</p>
+        <a href="#cookies" class="button">Explore Our Cookies</a>
+    </section>
+
+    <div class="container">
+        <section id="about" class="section">
+            <h2>About Phelisha's Cookie Shop</h2>
+            <div class="about-content">
+                <img src="shop.png" alt="Phelisha cookies" /> <div>
+                    <p>Hi there! I'm Phelisha, and I'm absolutely thrilled you've stopped by my little corner of the internet. Baking isn't just a hobby for me; it's a true passion that fills my heart with joy and my kitchen with the most wonderful aromas.</p>
+                    <p>Even though I'm currently a dedicated student balancing textbooks and lectures, I pour all my love and creativity into every single cookie I bake. What started as a way to share delicious treats with friends and family has blossomed into Phelisha's Cookie Shop – a dream come true for a student baker!</p>
+                    <p>Every cookie is crafted with high-quality ingredients and a sprinkle of magic, aiming to bring a smile to your face with every bite. Thank you for supporting my small business and my big dreams!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="cookies" class="section">
+            <h2>Our Delicious Cookies</h2>
+            <p style="text-align: center; margin-bottom: 30px;">Here are some of our popular varieties. New flavors are always baking!</p>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="yum.jpg" alt="Classic Chocolate Chip Cookie">
+                    <h3>Classic Chocolate Chip</h3>
+                    <p>The timeless favorite, perfectly gooey and packed with chocolatey goodness.</p>
+                    <p class="price">Ksh.75 each</p>
+                    <a href="order.html" class="button">Order Now</a>
+
+                </div>
+                <div class="product-card">
+                    <img src="rising.jpg" alt="Oatmeal Raisin Cookie">
+                    <h3>Chewy Oatmeal Raisin</h3>
+                    <p>Wholesome oats and sweet raisins combine for a comforting treat.</p>
+                    <p class="price">Ksh.50 each</p>
+                    <a href="order.html" class="button">Order Now</a>
+                </div>
+                <div class="product-card">
+                    <img src="decorated.png" alt="Decorated Sugar Cookie">
+                    <h3>Signature Sugar Cookies</h3>
+                    <p>Soft, buttery sugar cookies, perfect for decorating or enjoying plain.</p>
+                    <p class="price">Ksh.100 each</p>
+                    <a href="order.html" class="button">Order Now</a>
+                </div>
+                <div class="product-card">
+                    <img src="rich.jpg" alt="Peanut Butter Cookie">
+                    <h3>Rich Peanut Butter</h3>
+                    <p>For the peanut butter lovers! Soft, chewy, and full of nutty flavor.</p>
+                    <p class="price">Ksh.70 each</p>
+                    <a href="order.html" class="button">Order Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Get In Touch!</h2>
+            <p style="text-align: center;">Have a question or a special order request? I'd love to hear from you!</p>
+            <p style="text-align: center;">You can reach me via email at: <a href="mailto:mmbonephelisha@gmail">mmbonephelisha@gmail.com</a></p>
+            <p style="text-align: center;">Follow my cookie journey on Instagram: <a href="https://www.instagram.com/bleeze_phelisha" target="_blank">bleeze_phelisha</a></p>
+            </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Phelisha's Cookie Shop. All rights reserved. Baked with passion by an Egerton student!</p>
+    </footer>
+    <button id="topBtn">↑</button>
+
+    <script>
+    window.addEventListener('scroll', function () {
+        let body = document.body;
+        let scrolled = window.scrollY;
+
+        if (scrolled > 50) {
+            body.classList.add('header-scrolled');
+        } else {
+            body.classList.remove('header-scrolled');
+        }
+    });
+    
+    const heroImages = [
+        'cookie.jpg',
+        'rich.jpg',
+        'yum.jpg',
+        'rising.jpg'
+    ];
+
+    let currentIndex = 0;
+    const heroSection = document.querySelector('.hero');
+
+    function changeHeroImage() {
+        currentIndex = (currentIndex + 1) % heroImages.length;
+        heroSection.style.backgroundImage = `url('${heroImages[currentIndex]}')`;
+    }
+
+    
+    setInterval(changeHeroImage, 4000);
+
+    const reveals = document.querySelectorAll('.reveal');
+
+    function revealOnScroll() {
+        for (let r of reveals) {
+            let top = r.getBoundingClientRect().top;
+            let windowHeight = window.innerHeight;
+
+            if (top < windowHeight - 60) {
+                r.classList.add('active');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
+    const topBtn = document.getElementById("topBtn");
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+        topBtn.classList.add("show");
+    } else {
+        topBtn.classList.remove("show");
+    }
+});
+
+topBtn.onclick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+
+</script>
+</body>
+</html>
